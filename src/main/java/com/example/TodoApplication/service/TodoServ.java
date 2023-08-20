@@ -8,5 +8,11 @@ public interface TodoServ {
 	
       public List<Todo> getList();
       
+      public Todo getToDoItemById(Integer id);
+      
       public Todo store(Todo todo);
+      
+      public boolean deleteToDoItem(Integer id);
+      
+      public boolean saveOrUpdateToDoItem(Todo todo);
 }

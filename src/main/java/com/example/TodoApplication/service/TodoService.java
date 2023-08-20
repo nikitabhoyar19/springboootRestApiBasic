@@ -18,6 +18,10 @@ public class TodoService implements TodoServ{
 	public List<Todo> getList() {
 		return repo.findAll();
 	}
+	
+	public Todo getToDoItemById(Integer id) {
+		return repo.findById(id).get();
+	}
 
 	@Override
 	public Todo store(Todo todo) {
@@ -25,5 +29,23 @@ public class TodoService implements TodoServ{
 		return repo.save(todo);
 	}
 	
-	
+	public boolean saveOrUpdateToDoItem(Todo todo) {
+		Todo updatedObj = repo.save(todo);
+		
+		if (getToDoItemById(updatedObj.getId()) != null) {
+			return true;
+		}
+		
+		return true;
+	}
+
+	public boolean deleteToDoItem(Integer id) {
+		// TODO Auto-generated method stub
+repo.deleteById(id);
+		
+		if (repo.findById(id).isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 }
